@@ -100,16 +100,31 @@
         body { background-color: var(--bg-body); font-family: 'Montserrat', sans-serif; color: var(--dark-text); overflow-x: hidden; transition: background 0.5s ease, color 0.5s ease; }
 
         /* ==========================================
-           PANEL DE CONTROL AMPLIADO (8 ESTILOS)
+           PANEL DE CONTROL OPTIMIZADO (ESQUINA SUPERIOR DERECHA)
            ========================================== */
         .panel-demo {
-            position: fixed; top: 10px; left: 10px; z-index: 30000;
+            position: fixed; top: 10px; right: 10px; z-index: 30000;
             background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
-            padding: 10px 14px; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            padding: 10px 12px; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);
             display: flex; flex-direction: column; gap: 8px; border: 1px solid var(--oro-solido);
-            max-width: 230px;
+            max-width: 210px; transition: all 0.3s ease;
         }
-        .panel-demo span { font-family: 'Cinzel', serif; font-size: 0.55rem; font-weight: bold; letter-spacing: 1px; color: #333; }
+        body.theme-luxury .panel-demo, body.theme-neon .panel-demo {
+            background: rgba(20, 30, 48, 0.95); border-color: var(--oro-solido);
+        }
+        
+        .panel-header {
+            display: flex; justify-content: space-between; align-items: center; cursor: pointer;
+        }
+        .panel-demo span { font-family: 'Cinzel', serif; font-size: 0.55rem; font-weight: bold; letter-spacing: 1px; color: var(--dark-text); }
+        .btn-minimizar { background: none; border: none; font-size: 0.9rem; cursor: pointer; color: var(--oro-solido); }
+
+        .panel-content {
+            display: flex; flex-direction: column; gap: 8px; transition: max-height 0.3s ease; overflow: hidden;
+        }
+        .panel-demo.minimized .panel-content {
+            display: none;
+        }
         
         .selector-colores { 
             display: grid; 
@@ -117,7 +132,7 @@
             gap: 6px; 
         }
         .dot {
-            width: 22px; height: 22px; border-radius: 50%; cursor: pointer;
+            width: 20px; height: 20px; border-radius: 50%; cursor: pointer;
             border: 2px solid #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.3); transition: transform 0.2s;
         }
         .dot:hover { transform: scale(1.2); }
@@ -132,7 +147,7 @@
         .dot.luxury { background: #111111; border: 1px solid #d4af37; }
 
         .input-custom {
-            width: 100%; padding: 5px; font-size: 0.7rem; border: 1px solid #ccc; border-radius: 4px; font-family: 'Montserrat';
+            width: 100%; padding: 4px 6px; font-size: 0.7rem; border: 1px solid #ccc; border-radius: 4px; font-family: 'Montserrat';
         }
 
         /* Pantalla de Entrada */
@@ -287,27 +302,33 @@
 </head>
 <body>
 
-    <!-- PANEL INTERACTIVO DE 8 ESTILOS -->
-    <div class="panel-demo">
-        <span>🎨 SELECCIONAR TEMA (8):</span>
-        <div class="selector-colores">
-            <div class="dot rose" onclick="cambiarTema('')" title="Rose Gold"></div>
-            <div class="dot esmeralda" onclick="cambiarTema('theme-esmeralda')" title="Esmeralda & Oro"></div>
-            <div class="dot azul" onclick="cambiarTema('theme-azul')" title="Azul Real"></div>
-            <div class="dot neon" onclick="cambiarTema('theme-neon')" title="Neón Moderno"></div>
-            <div class="dot vintage" onclick="cambiarTema('theme-vintage')" title="Vintage Rústico"></div>
-            <div class="dot lavanda" onclick="cambiarTema('theme-lavanda')" title="Lavanda & Oro Rosa"></div>
-            <div class="dot champagne" onclick="cambiarTema('theme-champagne')" title="Champagne Clásico"></div>
-            <div class="dot luxury" onclick="cambiarTema('theme-luxury')" title="Negro & Oro Sofisticado"></div>
+    <!-- PANEL INTERACTIVO REUBICADO Y MINIMIZABLE -->
+    <div class="panel-demo" id="panelDemo">
+        <div class="panel-header" onclick="togglePanel()">
+            <span>⚙️ ESTILOS & NOMBRE</span>
+            <button class="btn-minimizar" id="btnMinimizar">-</button>
         </div>
-        <span>✏️ PROBAR NOMBRE:</span>
-        <input type="text" id="inputNombre" class="input-custom" value="Tu nombre" placeholder="Nombre..." oninput="actualizarNombre(this.value)">
+        <div class="panel-content">
+            <span>🎨 TEMA (8 COLORES):</span>
+            <div class="selector-colores">
+                <div class="dot rose" onclick="cambiarTema('')" title="Rose Gold"></div>
+                <div class="dot esmeralda" onclick="cambiarTema('theme-esmeralda')" title="Esmeralda & Oro"></div>
+                <div class="dot azul" onclick="cambiarTema('theme-azul')" title="Azul Real"></div>
+                <div class="dot neon" onclick="cambiarTema('theme-neon')" title="Neón Moderno"></div>
+                <div class="dot vintage" onclick="cambiarTema('theme-vintage')" title="Vintage Rústico"></div>
+                <div class="dot lavanda" onclick="cambiarTema('theme-lavanda')" title="Lavanda & Oro Rosa"></div>
+                <div class="dot champagne" onclick="cambiarTema('theme-champagne')" title="Champagne Clásico"></div>
+                <div class="dot luxury" onclick="cambiarTema('theme-luxury')" title="Negro & Oro Sofisticado"></div>
+            </div>
+            <span>✏️ PROBAR NOMBRE:</span>
+            <input type="text" id="inputNombre" class="input-custom" value="Valentina" placeholder="Nombre..." oninput="actualizarNombre(this.value)">
+        </div>
     </div>
 
     <!-- PANTALLA DE ENTRADA -->
     <div id="intro" onclick="iniciarGala()">
         <p class="serif-gold">EXPERIENCIA DEMOSTRATIVA</p>
-        <div class="btn-abrir" id="btnIntroNombre">Tu nombre</div>
+        <div class="btn-abrir" id="btnIntroNombre">Valentina</div>
         <p style="font-size: 0.7rem; margin-top: 12px; opacity: 0.7;">(Haz clic para abrir)</p>
     </div>
 
@@ -323,7 +344,7 @@
         <section>
             <div class="reveal active">
                 <p class="serif-gold">MIS QUINCE AÑOS</p>
-                <h1 class="nombre" id="displayNombre">Tu nombre</h1>
+                <h1 class="nombre" id="displayNombre">Valentina</h1>
                 <p style="font-weight: 700; letter-spacing: 3px; color: var(--oro-solido); margin-top: 5px; font-size: 0.8rem;">SÁBADO 18 DE JULIO • 2026</p>
                 
                 <!-- CONTADOR REGRESIVO INTEGRADO -->
@@ -421,6 +442,13 @@
             const nombreFinal = valor.trim() === "" ? "Tu Nombre" : valor;
             document.getElementById('displayNombre').innerText = nombreFinal;
             document.getElementById('btnIntroNombre').innerText = nombreFinal;
+        }
+
+        function togglePanel() {
+            const panel = document.getElementById('panelDemo');
+            const btn = document.getElementById('btnMinimizar');
+            panel.classList.toggle('minimized');
+            btn.innerText = panel.classList.contains('minimized') ? '+' : '-';
         }
 
         function iniciarGala() {
