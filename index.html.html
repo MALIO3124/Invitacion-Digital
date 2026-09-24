@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo Profesional | Invitación XV Años</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
+    <title>Demo Profesional | Invitación Digital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         /* ==========================================
            SISTEMA DE TEMAS AVANZADO (8 ESTILOS)
@@ -97,7 +97,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { background-color: var(--bg-body); font-family: 'Montserrat', sans-serif; color: var(--dark-text); overflow-x: hidden; transition: background 0.5s ease, color 0.5s ease; padding-bottom: 70px; }
+        body { background-color: var(--bg-body); font-family: 'Montserrat', sans-serif; font-weight: 300; color: var(--dark-text); overflow-x: hidden; transition: background 0.5s ease, color 0.5s ease; padding-bottom: 70px; }
 
         /* ==========================================
            PANEL INFERIOR FLOTANTE CON MINIMIZADOR
@@ -113,14 +113,12 @@
             background: rgba(20, 30, 48, 0.95); border-color: var(--oro-solido);
         }
 
-        /* Estado Minimizado del Panel */
         .panel-demo.minimizado {
             transform: translate(-50%, 120px);
             opacity: 0;
             pointer-events: none;
         }
         
-        /* Botón Flotante para Abrir/Cerrar el Panel */
         .btn-toggle-panel {
             position: fixed; bottom: 15px; right: 20px; z-index: 30001;
             background: var(--oro-solido); color: #fff; border: none;
@@ -155,7 +153,6 @@
         }
         .panel-demo span { font-family: 'Cinzel', serif; font-size: 0.5rem; font-weight: bold; color: var(--dark-text); white-space: nowrap; }
 
-        /* Botón interno para minimizar rápido */
         .btn-minimizar-interno {
             background: transparent; border: none; color: var(--dark-text); cursor: pointer;
             font-size: 1rem; padding: 0 2px; opacity: 0.7; transition: opacity 0.2s;
@@ -176,7 +173,7 @@
 
         canvas { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
 
-        /* SECCIONES ADAPTADAS PARA CELULARES */
+        /* SECCIONES */
         section { 
             min-height: auto; 
             padding: 60px 15px; 
@@ -207,7 +204,7 @@
             font-weight: bold; 
         }
 
-        /* Cuenta Regresiva Optimizada */
+        /* Cuenta Regresiva */
         .reloj { 
             display: flex; 
             gap: 8px; 
@@ -235,7 +232,7 @@
             opacity: 0.8; 
         }
 
-        /* Tarjetas Compactas y Estilizadas */
+        /* Tarjetas */
         .card {
             background: var(--card-bg); 
             border: 1px solid var(--card-border); 
@@ -253,23 +250,29 @@
 
         .btn-confirmar {
             background: #25d366; color: white; padding: 16px 32px; text-decoration: none;
-            font-weight: bold; border-radius: 50px; display: inline-block; margin-top: 20px;
+            font-weight: 600; border-radius: 50px; display: inline-block; margin-top: 20px;
             box-shadow: 0 8px 15px rgba(37, 211, 102, 0.3); transition: 0.3s; font-size: 0.85rem;
         }
 
-        .poema { font-style: italic; line-height: 1.8; max-width: 500px; margin: 20px auto; font-size: 0.95rem; }
+        .texto-normal { 
+            line-height: 1.6; 
+            max-width: 450px; 
+            margin: 15px auto; 
+            font-size: 0.9rem; 
+            font-weight: 300;
+        }
         .reveal { opacity: 0; transform: translateY(30px); transition: 1.2s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
 
-        /* Botón Mapa con Brillo Dorado */
+        /* Botón Mapa */
         .boton-mapa {
             background: transparent;
             color: var(--oro-solido);
             padding: 12px 25px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
             border-radius: 50px;
             display: inline-block;
             margin-top: 15px;
@@ -314,12 +317,10 @@
 </head>
 <body>
 
-    <!-- BOTÓN FLOTANTE PARA ABRIR/MINIMIZAR EL PANEL -->
     <button class="btn-toggle-panel" id="btnTogglePanel" onclick="togglePanel()" title="Personalizar diseño">
         🎨
     </button>
 
-    <!-- PANEL INFERIOR FLOTANTE -->
     <div class="panel-demo" id="panelDemo">
         <div class="panel-content">
             <div style="display: flex; flex-direction: column; gap: 2px;">
@@ -337,20 +338,18 @@
             </div>
             <div style="display: flex; flex-direction: column; gap: 2px;">
                 <span>NOMBRE:</span>
-                <input type="text" id="inputNombre" class="input-custom" value="Tu nombre" placeholder="Nombre..." oninput="actualizarNombre(this.value)">
+                <input type="text" id="inputNombre" class="input-custom" value="Tu Nombre" placeholder="Nombre..." oninput="actualizarNombre(this.value)">
             </div>
             <button class="btn-minimizar-interno" onclick="togglePanel()" title="Minimizar panel">✕</button>
         </div>
     </div>
 
-    <!-- PANTALLA DE ENTRADA -->
     <div id="intro" onclick="iniciarGala()">
         <p class="serif-gold">EXPERIENCIA DEMOSTRATIVA</p>
-        <div class="btn-abrir" id="btnIntroNombre">Tu nombre</div>
-        <p style="font-size: 0.7rem; margin-top: 12px; opacity: 0.7;">(Haz clic para abrir)</p>
+        <div class="btn-abrir" id="btnIntroNombre">Tu Nombre</div>
+        <p style="font-size: 0.7rem; margin-top: 12px; opacity: 0.7; font-weight: 400;">(Haz clic para abrir)</p>
     </div>
 
-    <!-- AUDIO CONFIGURADO CON musica.mp3 -->
     <audio id="musica" loop preload="auto">
         <source src="musica.mp3" type="audio/mpeg">
     </audio>
@@ -358,14 +357,13 @@
     <canvas id="canvas-efectos"></canvas>
 
     <div class="main-content">
-        <!-- PORTADA CON CONTADOR FORZADO -->
+        <!-- PORTADA -->
         <section>
             <div class="reveal active">
-                <p class="serif-gold">MIS QUINCE AÑOS</p>
-                <h1 class="nombre" id="displayNombre">Tu nombre</h1>
-                <p style="font-weight: 700; letter-spacing: 3px; color: var(--oro-solido); margin-top: 5px; font-size: 0.8rem;">SÁBADO 18 DE JULIO • 2026</p>
+                <p class="serif-gold">CELEBRACIÓN ESPECIAL</p>
+                <h1 class="nombre" id="displayNombre">Tu Nombre</h1>
+                <p style="font-weight: 600; letter-spacing: 3px; color: var(--oro-solido); margin-top: 5px; font-size: 0.8rem;">SÁBADO 18 DE JULIO • 2026</p>
                 
-                <!-- CONTADOR REGRESIVO INTEGRADO -->
                 <div class="reloj" id="timer">
                     <div class="bloque"><b id="dias">00</b><span>DÍAS</span></div>
                     <div class="bloque"><b id="horas">00</b><span>HRS</span></div>
@@ -375,28 +373,32 @@
             </div>
         </section>
 
-        <!-- PADRES / DEDICATORIA -->
+        <!-- DEDICATORIA -->
         <section style="background: rgba(0,0,0,0.015);">
             <div class="reveal">
-                <p class="serif-gold">CON LA BENDICIÓN DE MIS PADRES</p>
-                <h3 style="font-family: 'Cinzel'; font-size: 1rem; margin: 10px 0; letter-spacing: 2px;">[Aquí van los nombres de los papás]</h3>
-                <div style="height: 1px; width: 50px; background: var(--oro-solido); margin: 20px auto;"></div>
-                <p class="poema">"Existen momentos en la vida que imaginamos, soñamos y esperamos; uno de esos grandes momentos ha llegado para convertirse en el recuerdo más hermoso..."</p>
+                <p class="serif-gold">UN MOMENTO INOLVIDABLE</p>
+                <p class="texto-normal" style="font-style: italic; opacity: 0.95; margin-bottom: 15px;">
+                    "Existen momentos en la vida que imaginamos, soñamos y esperamos; uno de esos momentos ha llegado..."
+                </p>
+                <div style="height: 1px; width: 40px; background: var(--oro-solido); margin: 15px auto;"></div>
+                <p class="texto-normal" style="font-size: 0.85rem;">
+                    "Con la bendición de Dios, el amor y apoyo que mi familia me ha dado, quiero que compartas conmigo esta noche tan especial..."
+                </p>
             </div>
         </section>
 
         <!-- CEREMONIA -->
-       <section>
+        <section>
             <div class="card reveal">
                 <p class="serif-gold">CEREMONIA RELIGIOSA</p>
                 <p style="font-size: 1.5rem; margin: 8px 0;">⛪</p>
-                <h3 style="font-family: 'Cinzel'; font-size: 1.1rem; margin: 8px 0;">[Aquí va el nombre de la parroquia o iglesia]</h3>
-                <p style="font-size: 0.8rem; line-height: 1.4;">[Aquí va la calle, número y colonia]<br>[Ciudad y Estado]</p>
+                <h3 style="font-family: 'Cinzel'; font-size: 1.1rem; margin: 8px 0;">[Nombre de la Parroquia]</h3>
+                <p class="texto-normal" style="font-size: 0.8rem; margin: 5px 0;">[Calle, Número y Colonia]<br>[Ciudad y Estado]</p>
                 
-                <p style="margin-top: 15px; font-weight: bold; color: var(--rosa-fuerte); font-size: 1rem;">05:00 PM</p>
+                <p style="margin-top: 15px; font-weight: 600; color: var(--rosa-fuerte); font-size: 0.95rem;">05:00 PM</p>
                 
                 <a href="https://maps.google.com" target="_blank" class="boton-mapa">
-                    ABRIR EN GOOGLE MAPS
+                    VER EN GOOGLE MAPS
                 </a>
             </div>
         </section>   
@@ -406,13 +408,13 @@
             <div class="card reveal">
                 <p class="serif-gold">RECEPCIÓN DE GALA</p>
                 <p style="font-size: 1.5rem; margin: 8px 0;">🥂</p>
-                <h3 style="font-family: 'Cinzel'; font-size: 1.1rem; margin: 8px 0;">[Aquí va el nombre del salón de recepciones]</h3>
-                <p style="font-size: 0.8rem; line-height: 1.4;">[Aquí va la dirección del salón]<br>[Ciudad y Estado]</p>
+                <h3 style="font-family: 'Cinzel'; font-size: 1.1rem; margin: 8px 0;">[Nombre del Salón]</h3>
+                <p class="texto-normal" style="font-size: 0.8rem; margin: 5px 0;">[Dirección del Salón]<br>[Ciudad y Estado]</p>
                 
-                <p style="margin-top: 15px; font-weight: bold; color: var(--rosa-fuerte); font-size: 1rem;">08:00 PM</p>
+                <p style="margin-top: 15px; font-weight: 600; color: var(--rosa-fuerte); font-size: 0.95rem;">08:00 PM</p>
                 
                 <a href="https://maps.google.com" target="_blank" class="boton-mapa">
-                    ABRIR EN GOOGLE MAPS
+                    VER EN GOOGLE MAPS
                 </a>
             </div>
         </section>
@@ -422,15 +424,15 @@
             <div class="reveal" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 15px;">
                 <div class="card" style="margin: 0;">
                     <p class="serif-gold">CÓDIGO DE VESTIMENTA</p>
-                    <p style="font-family: 'Cinzel'; letter-spacing: 3px; font-size: 1.2rem; margin-top: 10px;"><b>RIGUROSA GALA</b></p>
-                    <p style="font-size: 0.75rem; margin-top: 8px; opacity: 0.8;">[Aquí van las indicaciones de vestimenta para los invitados]</p>
+                    <p style="font-family: 'Cinzel'; letter-spacing: 2px; font-size: 1.1rem; margin-top: 10px; font-weight: bold;">RIGUROSA GALA</p>
+                    <p class="texto-normal" style="font-size: 0.75rem; margin-top: 8px;">Sugerencia de color: Tonos formales (Evitar blanco).</p>
                 </div>
                 
                 <div class="card" style="border-style: dashed; margin: 0;">
                     <p class="serif-gold">MUESTRA DE CARIÑO</p>
                     <p style="font-size: 1.5rem; margin: 8px 0;">🎁 ✉️</p>
-                    <p style="font-size: 0.8rem;">Tu presencia es nuestro mejor regalo, pero si deseas tener un detalle:</p>
-                    <p style="margin-top: 10px; font-weight: bold; color: var(--oro-solido); letter-spacing: 1px; font-size: 0.85rem;">[Aquí va la información de lluvia de sobres o mesa de regalos]</p>
+                    <p class="texto-normal" style="font-size: 0.8rem; margin: 5px 0;">Tu presencia es nuestro mejor regalo. Si deseas tener un detalle adicional:</p>
+                    <p style="margin-top: 10px; font-weight: 600; color: var(--oro-solido); letter-spacing: 1px; font-size: 0.8rem;">[Información de mesa de regalos o lluvia de sobres]</p>
                 </div>
             </div>
         </section>
@@ -439,14 +441,14 @@
         <section>
             <div class="reveal">
                 <h2 style="font-family: 'Pinyon Script'; font-size: 3rem; color: var(--rosa-fuerte);">¿Nos acompañas?</h2>
-                <p style="letter-spacing: 2px; font-size: 0.75rem; margin: 12px 0; font-weight: bold;">FAVOR DE CONFIRMAR ANTES DEL [Fecha límite]</p>
-                <a href="https://wa.me/528990000000?text=Hola!%20Confirmo%20mi%20asistencia%20a%20los%20XV" target="_blank" class="btn-confirmar">
+                <p style="letter-spacing: 1px; font-size: 0.75rem; margin: 12px 0; font-weight: 600;">FAVOR DE CONFIRMAR ASISTENCIA ANTES DEL [Fecha]</p>
+                <a href="https://wa.me/528990000000?text=Hola!%20Confirmo%20mi%20asistencia" target="_blank" class="btn-confirmar">
                     CONFIRMAR POR WHATSAPP
                 </a>
             </div>
             
-            <div class="reveal" style="margin-top: 40px; opacity: 0.6;">
-                <p style="font-family: 'Pinyon Script'; font-size: 1.8rem;">Gracias por ser parte de este gran día.</p>
+            <div class="reveal" style="margin-top: 40px; opacity: 0.7;">
+                <p style="font-family: 'Cinzel'; font-size: 0.75rem; letter-spacing: 2px;">¡TE ESPERAMOS!</p>
             </div>
         </section>
     </div>
@@ -482,7 +484,6 @@
             }, 1000); 
         }
 
-        // Cuenta Regresiva de alta precisión
         const target = new Date("July 18, 2026 19:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
@@ -500,7 +501,6 @@
             }
         }, 1000);
 
-        // Canvas de efectos dinámicos
         const canvas = document.getElementById('canvas-efectos');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth; canvas.height = window.innerHeight;
